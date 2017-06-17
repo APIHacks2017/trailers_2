@@ -16,11 +16,24 @@ def receivedata():
     longitude = request.form.get('long', '')
     type_of_location = request.form.get('type', '')
     duration = request.form.get('duration', '')
+
     duration_dict = json.loads(duration)
+    start_time = float(duration_dict['sttime'])
+    end_time = float(duration_dict['entime'])
     list_of_points_parsed = json.loads(list_of_points)
-    print(list_of_points_parsed[0])
-    print(list_of_points_parsed[1])
-    #print(list_of_points)
+
+    result = filters.filter1(list_of_points_parsed,type_of_location)
+    print(result)
+
+
+
+    '''
+    print(list_of_points_parsed)
+    print(float(latitude))
+    print(float(longitude))
+    print(type_of_location)
+    print('Start time is: ', start_time, '\nEnd time is:', end_time)
+    '''
     return list_of_points
 
 if __name__ == '__main__':
