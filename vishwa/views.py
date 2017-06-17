@@ -70,12 +70,13 @@ def get_place_info(place_id):
    x = requests.get(url, headers={'x-Gateway-APIKey': '7c71114f-35cf-4709-aae9-651dbf216fe8'})
    response = x.content.decode('utf-8')
    response_decoded = json.loads(response)
-   return response_decoded['result']['name']
+   print(response_decoded['result'])
+   return response_decoded['result']['name'], response_decoded['result']['types']
 
 
 def get_corpus(location, food, explore):
     explore_types = ['amusement_park', 'aquarium', 'art_gallery', 'church', 'hindu_temple', 'zoo',
-             'stadium', 'shopping_mall', 'night_club', 'library']
+             'stadium',  'library']
     food_types = ['cafe', 'restaurant']
     types = []
     if food:
@@ -109,9 +110,13 @@ def get_corpus(location, food, explore):
         randcorpus.append(corpus[num])
         i=i+1
     for x in randcorpus:
-        x['name'] = get_place_info(x['place_id'])
+        x['name'], _types = get_place_info(x['place_id'])
         del x['place_id']
-        x['type'] = 'food'
+        for food_type in food_types:
+            if food_type in _types:
+                x['type'] = 'food'
+            else:
+                x['type'] = 'explore'
     return json.dumps(randcorpus)
 
 
