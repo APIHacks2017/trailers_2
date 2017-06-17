@@ -21,13 +21,13 @@ def receivedata():
     start_time = float(duration_dict['sttime'])
     end_time = float(duration_dict['entime'])
     list_of_points_parsed = json.loads(list_of_points)
-
-    result = filters.filter1(list_of_points_parsed,type_of_location)
+    type_of_location1 = json.loads(type_of_location)
+    result = filters.filter1(list_of_points_parsed,type_of_location1)
     print(result)
 
 
 
-    '''
+    ''' 
     print(list_of_points_parsed)
     print(float(latitude))
     print(float(longitude))
