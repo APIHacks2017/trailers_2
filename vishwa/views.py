@@ -4,7 +4,7 @@ import filters
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/kandhan', methods=["GET"])
 def hello_world():
     return render_template('hello.html')
 
@@ -36,5 +36,13 @@ def receivedata():
     '''
     return list_of_points
 
+@app.route('/permuted', methods=["POST"])
+def permuted():
+    list_of_points = request.form.get('listed', '')
+    no_of_points = request.form.get('noofdest', '')
+    list_of_points_parsed = json.loads(list_of_points)
+    permuted_points = filters.permutations(list_of_points_parsed,no_of_points)
+
+    return 'success'
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5001)
