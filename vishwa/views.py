@@ -101,7 +101,7 @@ def get_corpus(location, food, explore):
         #rating = result['rating']
         corpus.append(dict(lat=lat[1],long=long[1], place_id=place_id))
     l = len(corpus)
-    number_of_destinations = 6
+    number_of_destinations = 4
     i = 1
     randcorpus = []
     while(i <= number_of_destinations):
