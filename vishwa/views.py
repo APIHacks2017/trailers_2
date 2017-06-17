@@ -2,6 +2,7 @@ from flask import Flask, render_template, session, request, redirect, url_for
 import json
 import filters
 import requests
+from random import randint
 import codecs
 app = Flask(__name__)
 
@@ -46,11 +47,17 @@ def permuted():
     permuted_points = filters.permutations(list_of_points_parsed,no_of_points)
     return 'success'
 
-@app.route('/corpus')
-def get_corpus():
+@app.route('/getData', methods=["POST"])
+def getData():
+    lat = request.form.get('lat', '')
+    lang = request.form.get('lang', '')
+    location = "{},{}".format(lat, lang)
+    return get_corpus(location)
+
+def get_corpus(location):
     types = ['cafe', 'restaurant']
     formatted_types = '|'.join(types)
-    location = "13.0620724,80.2612372"
+    #location = "13.0620724,80.2612372"
     api_key = 'AIzaSyAgCJBw8Jlutcm9rm6fUJFt8HmcE3ZRjS8'
     url = 'http://52.36.211.72:5555/gateway/Google%20Places%20API/1.0/place/nearbysearch/json?key={}&' \
           'radius={}&location={}&types={}'.format(api_key, 1000, location, formatted_types)
@@ -65,7 +72,34 @@ def get_corpus():
         place_id = result['place_id']
         #rating = result['rating']
         corpus.append(dict(lat=lat[1],long=long[1], place_id=place_id))
-    return json.dumps(corpus)
+    l = len(corpus)
+    number_of_destinations = 4
+    i = 1
+    randcorpus = []
+    while(i <= number_of_destinations):
+        num = randint(0,l-1)
+        randcorpus.append(corpus[num])
+        i=i+1
 
+    return json.dumps(randcorpus)
+
+
+@app.route('/data', methods=["GET"])
+def data():
+    payload = [
+        {'lat': 13.071698,
+         'long': 80.256506,
+         'type': 'Museum'
+         },
+        {'lat': 13.006647,
+         'long': 80.242090,
+         'type': 'Educational_Instituition'
+         },
+        {'lat': 13.052418,
+         'long': 80.282738,
+         'type': 'Beach'
+         }
+    ]
+    return "Hello"
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=8080)

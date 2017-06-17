@@ -39,7 +39,7 @@ duration = {
 payload_json = json.dumps(payload)
 duration_json = json.dumps(duration)
 type_user_json=json.dumps(type_user)
-r = requests.post('http://0.0.0.0:5001/receivedata', data={'listed':payload_json,
+r = requests.post('http://0.0.0.0:8080/receivedata', data={'listed':payload_json,
                                                              'lat':latitude,
                                                              'long': longitude,
                                                               'type': type_user_json,
