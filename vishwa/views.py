@@ -49,18 +49,46 @@ def permuted():
 
 @app.route('/getData', methods=["POST"])
 def getData():
-    lat = request.form.get('lat', '')
-    lang = request.form.get('lang', '')
+    food = False
+    explore = False
+    data = request.json
+    lat = data['lat']
+    lang = data['long']
+    types = data['pointType']
+    print(types)
+    if 'food' in types:
+        food = True
+    if 'explore' in types:
+        explore = True
+    print(food, explore)
     location = "{},{}".format(lat, lang)
-    return get_corpus(location)
+    return get_corpus(location, food, explore)
 
-def get_corpus(location):
-    types = ['cafe', 'restaurant']
+def get_place_info(place_id):
+   api_key = 'AIzaSyAgCJBw8Jlutcm9rm6fUJFt8HmcE3ZRjS8'
+   url = 'http://52.36.211.72:5555/gateway/Google%20Places%20API/1.0/place/details/json?key={}&placeid={}'.format(api_key, place_id)
+   x = requests.get(url, headers={'x-Gateway-APIKey': '7c71114f-35cf-4709-aae9-651dbf216fe8'})
+   response = x.content.decode('utf-8')
+   response_decoded = json.loads(response)
+   return response_decoded['result']['name']
+
+
+def get_corpus(location, food, explore):
+    explore_types = ['amusement_park', 'aquarium', 'art_gallery', 'church', 'hindu_temple', 'zoo',
+             'stadium', 'shopping_mall', 'night_club', 'library']
+    food_types = ['cafe', 'restaurant']
+    types = []
+    if food:
+        types += food_types
+    if explore:
+        types += explore_types
     formatted_types = '|'.join(types)
+    print(formatted_types)
     #location = "13.0620724,80.2612372"
     api_key = 'AIzaSyAgCJBw8Jlutcm9rm6fUJFt8HmcE3ZRjS8'
     url = 'http://52.36.211.72:5555/gateway/Google%20Places%20API/1.0/place/nearbysearch/json?key={}&' \
           'radius={}&location={}&types={}'.format(api_key, 1000, location, formatted_types)
+    print(url)
     x = requests.get(url, headers={'x-Gateway-APIKey': '7c71114f-35cf-4709-aae9-651dbf216fe8'})
     response = x.content
     print(response)
@@ -73,14 +101,17 @@ def get_corpus(location):
         #rating = result['rating']
         corpus.append(dict(lat=lat[1],long=long[1], place_id=place_id))
     l = len(corpus)
-    number_of_destinations = 4
+    number_of_destinations = 6
     i = 1
     randcorpus = []
     while(i <= number_of_destinations):
         num = randint(0,l-1)
         randcorpus.append(corpus[num])
         i=i+1
-
+    for x in randcorpus:
+        x['name'] = get_place_info(x['place_id'])
+        del x['place_id']
+        x['type'] = 'food'
     return json.dumps(randcorpus)
 
 
@@ -102,4 +133,6 @@ def data():
     ]
     return "Hello"
 if __name__ == '__main__':
+    print(get_place_info("ChIJbzbvPwxmUjoRmZOKxmfPy-s"))
     app.run(debug=True, host='0.0.0.0', port=8080)
+

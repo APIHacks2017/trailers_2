@@ -10,7 +10,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/vishwa$views.coverage" NAME="views Coverage Results" MODIFIED="1497705542418" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/vishwa$views.coverage" NAME="views Coverage Results" MODIFIED="1497706535884" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/vishwa$Unittests_in_testing_py.coverage" NAME="Unittests in testing.py Coverage Results" MODIFIED="1497705000790" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
@@ -29,7 +29,7 @@
       <file leaf-file-name="testing.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
+            <state relative-caret-position="420">
               <caret line="28" column="1" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="28" selection-end-column="1" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
@@ -41,8 +41,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
-              <caret line="52" column="39" lean-forward="true" selection-start-line="52" selection-start-column="39" selection-end-line="52" selection-end-column="39" />
+            <state relative-caret-position="968">
+              <caret line="103" column="30" lean-forward="false" selection-start-line="103" selection-start-column="30" selection-end-line="103" selection-end-column="30" />
               <folding>
                 <element signature="e#0#77#0" expanded="true" />
               </folding>
@@ -428,6 +428,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/testing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" column="1" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="28" selection-end-column="1" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/filters.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -436,20 +446,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="28" column="1" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="28" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="52" column="39" lean-forward="true" selection-start-line="52" selection-start-column="39" selection-end-line="52" selection-end-column="39" />
+        <state relative-caret-position="968">
+          <caret line="103" column="30" lean-forward="false" selection-start-line="103" selection-start-column="30" selection-end-line="103" selection-end-column="30" />
           <folding>
             <element signature="e#0#77#0" expanded="true" />
           </folding>
